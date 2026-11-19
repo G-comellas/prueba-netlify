@@ -17,7 +17,7 @@ const __dirname = path.dirname(__filename);
 
   const app = express();
 app.use(express.urlencoded({ extended: true }));
-
+app.set('trust proxy', 1);
   app.use(express.json());
   app.use(
     session({
@@ -25,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
       secret: 'secret',
       resave: false,
       saveUninitialized: false,
-      cookie: { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production', maxAge: 60 * 60 * 1000 },
+      cookie: { httpOnly: true, sameSite: 'lax', secure: true, maxAge: 60 * 60 * 1000 },
     }),
   );
 
